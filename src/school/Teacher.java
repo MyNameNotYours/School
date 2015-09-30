@@ -52,11 +52,33 @@ public class Teacher extends Person{
     public double getMeanLevel()
     {
         return(meanLevel);
-    }        
+    }  
+    
+    public static Teacher getMostElectiveCourses()
+    {
+        Teacher teacher = null;
+        for (Person temp : people)
+        {
+            if (temp instanceof Teacher)
+            {
+//                int numElectiveCourses = 0;
+//                for(int index = 0; index < Course.numPeriods; index++)
+//                {
+//                    if(courses[index].getType() == Course.Type.Elective)
+//                    {
+//                        numElectiveCourses++;
+//                    }
+//                }
+//                if(teacher == null || )
+//                    teacher = (Teacher)temp;
+            }
+        } 
+        return(teacher);
+    }       
     public static void printNames()
     {
         System.out.println(
-        "===printNamesOf=== ");
+        "===printNamesOfTeachers=== ");
         for (Person temp : people)
         {
             if (temp instanceof Teacher)
@@ -67,6 +89,7 @@ public class Teacher extends Person{
     
     public void printStudentsNames()
     {
+       System.out.println("===============");
        System.out.println(getName() + " teaches");
         for (Course temp : courses)
         {

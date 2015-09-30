@@ -33,13 +33,13 @@ public class Course {
         period = _period;
     }   
 
-    public boolean addStudent(Student _student)
+    public boolean addStudent(Student _student, double _gradeScore)
     {
         if (!setStudentOK(_student))
             return(false);
         if (!_student.setCourseOK(this))
             return(false);
-        _student.setCourseDoIt(this);
+        _student.setCourseDoIt(this, _gradeScore);
         setStudentDoIt(_student);
         return(true);
     }  
@@ -54,6 +54,7 @@ public class Course {
     public void setStudentDoIt(Student _student)
     {
         students.add(_student);
+        
     }    
     
         /////////////////////    
@@ -107,7 +108,11 @@ public class Course {
         return(type);
     }  
     
-
+    
+    public Teacher getTeacher()
+    {
+        return(theTeacher);
+    }   
     public Student getStudent(int _index)
     {
         return(students.get(_index));
