@@ -54,26 +54,46 @@ public class Teacher extends Person{
         return(meanLevel);
     }  
     
-    public static Teacher getMostElectiveCourses()
+    public void printStudentsNamesInGrade(int _gradeLevel)
     {
-        Teacher teacher = null;
+        System.out.println(
+        "===printNamesOfStudentsInGrade=== " + _gradeLevel);
+        for (Course temp : courses)
+        {
+            if (temp != null)
+            {
+                for (int index = 0;index < temp.getNumStudents();index++)
+                {
+                    if(temp.getStudent(index).getGradeLevel() == _gradeLevel)
+                    System.out.println(temp.getStudent(index).getName());
+                }
+            }
+        }
+    }
+    
+    public static Teacher mostElectiveCourses()
+    {
+        Teacher mostElective = null;
+        int highestNumElective = 0;
         for (Person temp : people)
         {
             if (temp instanceof Teacher)
             {
-//                int numElectiveCourses = 0;
-//                for(int index = 0; index < Course.numPeriods; index++)
-//                {
-//                    if(courses[index].getType() == Course.Type.Elective)
-//                    {
-//                        numElectiveCourses++;
-//                    }
-//                }
-//                if(teacher == null || )
-//                    teacher = (Teacher)temp;
+                int numElectives = 0;
+                Teacher teacher = (Teacher)temp;
+                for (Course course : teacher.courses)
+                {
+                    if(course != null && course.getType() == Course.Type.Elective)
+                        numElectives++;
+                }
+                if(highestNumElective < numElectives)
+                {
+                    highestNumElective = numElectives;
+                    mostElective = teacher;
+                }
             }
         } 
-        return(teacher);
+        return(mostElective);
     }       
     public static void printNames()
     {

@@ -10,13 +10,14 @@ public class Course {
     private String name;
     private Type type;
     private int period;
+    private boolean honors;
     private ArrayList<Student> students = new ArrayList<Student>();
     private Teacher theTeacher;
     
     public static Course addCourse(String _name,
-    Type _type, int _period)
+    Type _type, int _period, boolean _honors)
     {
-        Course temp = new Course(_name,_type,_period);
+        Course temp = new Course(_name,_type,_period,_honors);
         courses.add(temp);
         return(temp);
     }
@@ -26,13 +27,15 @@ public class Course {
         type = Type.Elective;
         period = 1;
     }
-    Course(String _name,Type _type, int _period)
+    Course(String _name,Type _type, int _period, boolean _honors)
     {
         name = _name;
         type = _type;
         period = _period;
+        honors = _honors;
     }   
 
+    
     public boolean addStudent(Student _student, double _gradeScore)
     {
         if (!setStudentOK(_student))
@@ -83,6 +86,7 @@ public class Course {
         theTeacher = _teacher;
     }    
     
+    
     public void setPeriod(int _period)
     {
         period = _period;
@@ -90,7 +94,15 @@ public class Course {
     public int getPeriod()
     {
         return(period);
-    }       
+    }  
+    public void setIfHonors(boolean _honors)
+    {
+        honors = _honors;
+    }
+    public boolean getIfHonors()
+    {
+        return(honors);
+    } 
     public void setName(String _name)
     {
         name = _name;
@@ -121,6 +133,8 @@ public class Course {
     {
         return(students.size());
     }    
+    
+    
     public static void printNames()
     {
         System.out.println("===printNames===");
