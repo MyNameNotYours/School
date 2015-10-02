@@ -26,6 +26,7 @@ public class Course {
         name = "None";
         type = Type.Elective;
         period = 1;
+        honors = false;
     }
     Course(String _name,Type _type, int _period, boolean _honors)
     {

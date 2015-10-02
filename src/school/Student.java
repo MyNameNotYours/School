@@ -100,7 +100,7 @@ public class Student extends Person{
             }
         } 
         return(highestStudent);
-    }     
+    }
     
     public static void printNames()
     {
@@ -111,7 +111,28 @@ public class Student extends Person{
             if (temp instanceof Student)
                 System.out.println(temp.getName());
         }
-             
+    }
+    
+    public static void printHonorStudents()
+    {
+        System.out.println(
+        "===printNamesOfHonorStudents=== ");
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+            {
+                Student student = (Student)temp;
+                Student alreadyPrinted = null;
+                for (Course course : student.courses)
+                {
+                    if(course != null && alreadyPrinted != student && course.getIfHonors() == true)
+                    {
+                        System.out.println(temp.getName());
+                        alreadyPrinted = student;
+                    }
+                }
+            }
+        }        
     } 
     
     public void printTeachersNames()
@@ -126,7 +147,25 @@ public class Student extends Person{
                     System.out.println(temp.getTeacher().getName());               
             }
         }
-    }    
+    }   
+    
+    public Teacher getNicestTeacher()
+    {
+        Teacher nicestTeacher = null;
+        for (Course temp : courses)
+        {
+            if (temp != null)
+            {
+                if(temp.getTeacher() != null)
+                {
+                    if(nicestTeacher == null || 
+                       temp.getTeacher().getMeanLevel() < nicestTeacher.getMeanLevel())
+                        nicestTeacher = temp.getTeacher(); 
+                } 
+            }
+        }
+        return(nicestTeacher);
+    } 
     
     public String toString()
     {

@@ -57,7 +57,7 @@ public class Teacher extends Person{
     public void printStudentsNamesInGrade(int _gradeLevel)
     {
         System.out.println(
-        "===printNamesOfStudentsInGrade=== " + _gradeLevel);
+        "===Students Of " + getName() + " In Grade " + _gradeLevel + "===");
         for (Course temp : courses)
         {
             if (temp != null)
@@ -95,6 +95,37 @@ public class Teacher extends Person{
         } 
         return(mostElective);
     }       
+    
+    public static void printTeachersOfCertainGradeLevel(int _gradeLevel)
+    {
+        System.out.println("===Teaches Grade " + _gradeLevel + "===" );
+            for (Person temp : people)
+            {
+                if(temp instanceof Teacher)
+                {
+                    Teacher teacher = (Teacher)temp;
+                    boolean teachesGradeLevel = false;
+                    if(temp != null)
+                    {
+                        for (Course course : teacher.courses)
+                        {
+                            if (course != null)
+                            {
+                                for (int index = 0;index < course.getNumStudents() && teachesGradeLevel == false;index++)
+                                {
+                                    if(course.getStudent(index).getGradeLevel() == _gradeLevel)
+                                    {
+                                        teachesGradeLevel = true;
+                                    }
+                                }
+                            }                            
+                        }
+                    }
+                    if(teachesGradeLevel == true)
+                    System.out.println(temp.getName());
+                }
+            }
+    }
     public static void printNames()
     {
         System.out.println(
